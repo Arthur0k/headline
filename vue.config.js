@@ -3,15 +3,15 @@ const path = require('path')
 module.exports = {
   devServer: {
     open: true
+    // proxy: 'http://127.0.0.1:3000'
   },
   configureWebpack: {
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src'),
-        // vue: path.resolve('vue/dist/vue-esm.js')
-        views: path.join('@/views')
-      },
-      // extensions: ['.js', '.vue', '.less']
+        views: path.join('@/views'),
+        components: path.join('@/components')
+      }
     }
   }
 }
