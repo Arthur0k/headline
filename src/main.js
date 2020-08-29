@@ -12,14 +12,6 @@ import AKNavItem from 'components/AkNavItem'
 import Vant from 'vant'
 import 'vant/lib/index.css'
 import moment from 'moment'
-import Router from 'vue-router'
-
-// 处理重复导航问题
-const originalPush = Router.prototype.push
-Router.prototype.push = function push(location, onResolve, onReject) {
-  if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
-  return originalPush.call(this, location).catch(err => err)
-}
 
 Vue.prototype.$axios = axios
 
