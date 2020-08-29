@@ -57,15 +57,23 @@ export default {
   methods: {
     async onSubmit(value) {
       const res = await this.$axios.post('/login', this.user)
-      const { statusCode, message } = res.data
+      const { statusCode, message, data } = res.data
       if (statusCode === 200) {
         this.$toast.success(message)
-        console.log(res.data)
+
+        // 存取token id
+        localStorage.setItem('token', data.token)
+        localStorage.setItem('id', data.user.id)
+        this.$router.push('/user')
       } else {
         this.$toast.fail('登录失败')
-        console.log(res.data)
       }
     }
+  },
+  created() {
+    const { username, password } = this.$route.params
+    this.user.username = username
+    this.user.password = password
   }
 }
 </script>

@@ -61,19 +61,23 @@ export default {
         ],
         nickname: [
           { required: true, message: '昵称不能为空' },
-          { pattern: /[\u4e00-\u9fa5]{2,6}/, message: '请输入2-6个中文字符' }
+          // { pattern: /[\u4e00-\u9fa5]{2,6}/, message: '请输入2-6个中文字符' }
+          { pattern: /\d{2,6}/, message: '请输入2-6个中文字符' }
         ]
       }
     }
   },
   methods: {
     async onSubmit(value) {
-      console.log('deng')
       const res = await this.$axios.post('/register', this.user)
+      console.log(res.data)
       const { statusCode, message } = res.data
       if (statusCode === 200) {
         this.$toast.success(message)
-        console.log(res.data)
+        this.$router.push({
+          name: 'login',
+          params: value
+        })
       } else {
         this.$toast.fail('注册失败')
       }
