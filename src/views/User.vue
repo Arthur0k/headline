@@ -1,12 +1,12 @@
 <template>
   <div id="User">
-    <div class="user-container">
+    <div class="user-container" @click="$router.push('user-edit')">
       <div class="avatar">
         <img :src="$axios.defaults.baseURL + user.head_img" alt />
       </div>
       <div class="userInfo">
         <div class="gender">
-          <span class="iconfont iconxingbienan"></span>
+          <span class="iconfont" :class="user.gender === 1 ? 'iconxingbienan' : 'iconxingbienv'"></span>
           <span class="nickname">{{user.nickname}}</span>
         </div>
         <div class="datetime">{{user.create_date | time }}</div>
@@ -27,9 +27,10 @@
       <template>我的收藏</template>
       <template #content>文章/视频</template>
     </ak-nav-item>
-    <ak-nav-item path="/profile">
-      <template>关注</template>
+    <ak-nav-item path="/profile" @click.native="$router.push('/user-edit')">
+      <template>设置</template>
     </ak-nav-item>
+    <van-button type="info" block class="btn" @click.native="quit">退出登录</van-button>
   </div>
 </template>
 
@@ -41,21 +42,28 @@ export default {
     }
   },
   methods: {
+    async quit() {
+      try {
+        await this.$dialog.confirm({
+          title: '温馨提示',
+          message: '真的要退出吗'
+        })
+      } catch (err) {
+        return
+      }
+      this.$router.push('/login')
+      localStorage.removeItem('id')
+      localStorage.removeItem('token')
+    },
     async getUserData() {
       const id = localStorage.getItem('id')
       const token = localStorage.getItem('token')
       const res = await this.$axios.get(`/user/${id}`, {
         headers: { authorization: token }
       })
-      console.log(res)
       const { statusCode, data } = res.data
       if (statusCode === 200) {
         this.user = data
-      } else if (statusCode === 401) {
-        this.$toast('用户验证失败')
-        this.$router.push('/login')
-        localStorage.removeItem('id')
-        localStorage.removeItem('token')
       }
     }
   },
@@ -67,6 +75,7 @@ export default {
 
 <style lang="less" scoped>
 #User {
+  padding: 15px;
   .user-container {
     display: flex;
     align-items: center;
@@ -88,7 +97,16 @@ export default {
       .datetime {
         margin-top: 5px;
       }
+      .iconxingbienan {
+        color: skyblue;
+      }
+      .iconxingbienv {
+        color: pink;
+      }
     }
+  }
+  .btn {
+    margin-top: 20px;
   }
 }
 </style>

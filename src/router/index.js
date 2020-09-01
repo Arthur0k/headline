@@ -13,21 +13,24 @@ Vue.use(VueRouter)
 const Login = () => import('views/Login')
 const Register = () => import('views/Register')
 const User = () => import('views/User')
+const UserEdit = () => import('views/UserEdit')
 
 const routes = [
   { path: '/', redirect: '/login' },
   { path: '/login', name: 'login', component: Login },
   { path: '/register', name: 'register', component: Register },
-  { path: '/user', name: 'user', component: User }
+  { path: '/user', name: 'user', component: User },
+  { path: '/user-edit', name: 'user-edit', component: UserEdit }
 ]
 
 const router = new VueRouter({
   routes
 })
 
+const authorizationName = ['user', 'user-edit']
 router.beforeEach(function(to, from, next) {
   const token = localStorage.getItem('token')
-  if (token || to.name !== 'user') {
+  if (token || !authorizationName.includes(to.name)) {
     next()
   } else {
     router.push('/login')

@@ -10,7 +10,8 @@ module.exports = {
       alias: {
         '@': path.resolve(__dirname, 'src'),
         views: path.join('@/views'),
-        components: path.join('@/components')
+        components: path.join('@/components'),
+        utils: path.join('@/common/utils')
       }
     }
   }
