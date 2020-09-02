@@ -23,7 +23,7 @@
       <template>我的跟帖</template>
       <template #content>跟帖/回复</template>
     </ak-nav-item>
-    <ak-nav-item>
+    <ak-nav-item path="/mycollect">
       <template>我的收藏</template>
       <template #content>文章/视频</template>
     </ak-nav-item>

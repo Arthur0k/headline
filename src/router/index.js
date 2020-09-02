@@ -11,6 +11,7 @@ const User = () => import('views/user/User')
 const UserEdit = () => import('views/user/UserEdit')
 const MyComment = () => import('views/user/MyComment')
 const MyFollow = () => import('views/user/MyFollow')
+const MyCollect = () => import('views/user/MyCollect')
 const Index = () => import('views/index/Index')
 
 const routes = [
@@ -20,7 +21,8 @@ const routes = [
   { path: '/user', name: 'user', component: User },
   { path: '/user-edit', name: 'user-edit', component: UserEdit },
   { path: '/mycomment', name: 'myComment', component: MyComment },
-  { path: '/myfollow', name: 'myfollow', component: MyFollow }
+  { path: '/myfollow', name: 'myfollow', component: MyFollow },
+  { path: '/mycollect', name: 'mycollect', component: MyCollect }
 ]
 
 const router = new VueRouter({

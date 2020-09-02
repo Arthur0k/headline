@@ -49,7 +49,6 @@ export default {
       this.loading = true
       this.commentList = []
       this.getCommentList()
-      console.log('xiala')
     },
     async getCommentList() {
       const res = await this.$axios.get('/user_comments', {
