@@ -11,9 +11,10 @@ const User = () => import('views/user/User')
 const UserEdit = () => import('views/user/UserEdit')
 const MyComment = () => import('views/user/MyComment')
 const MyFollow = () => import('views/user/MyFollow')
+const Index = () => import('views/index/Index')
 
 const routes = [
-  { path: '/', redirect: '/login' },
+  { path: '/', name: 'index', alias: '/index', component: Index },
   { path: '/login', name: 'login', component: Login },
   { path: '/register', name: 'register', component: Register },
   { path: '/user', name: 'user', component: User },

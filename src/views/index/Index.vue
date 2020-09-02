@@ -1,0 +1,10 @@
+<template>
+  <div id="Index"></div>
+</template>
+
+<script>
+export default {}
+</script>
+
+<style scoped>
+</style>

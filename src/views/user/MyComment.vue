@@ -1,18 +1,28 @@
 <template>
   <div id="MyComment">
     <ak-header>我的跟帖</ak-header>
-    <div class="mycomment" v-for="item in commentList" :key="item.id">
-      <div class="time">{{item.create_date|time}}</div>
-      <div class="comment" v-if="item.parent">
-        <div class="name">{{item.parent.user.nickname}}</div>
-        <div class="title">{{item.parent.content}}</div>
-      </div>
-      <div class="content">{{item.content}}</div>
-      <div class="parent">
-        <p class="content">{{item.post.title}}</p>
-        <span class="iconfont iconjiantou1"></span>
-      </div>
-    </div>
+    <van-pull-refresh v-model="refreshing" @refresh="onRefresh">
+      <van-list
+        :immediate-check="false"
+        v-model="loading"
+        :finished="finished"
+        finished-text="没有更多了"
+        @load="onLoad"
+      >
+        <div class="mycomment" v-for="item in commentList" :key="item.id">
+          <div class="time">{{item.create_date|time}}</div>
+          <div class="comment" v-if="item.parent">
+            <div class="name">{{item.parent.user.nickname}}</div>
+            <div class="title">{{item.parent.content}}</div>
+          </div>
+          <div class="content">{{item.content}}</div>
+          <div class="parent">
+            <p class="content">{{item.post.title}}</p>
+            <span class="iconfont iconjiantou1"></span>
+          </div>
+        </div>
+      </van-list>
+    </van-pull-refresh>
   </div>
 </template>
 
@@ -20,14 +30,41 @@
 export default {
   data() {
     return {
-      commentList: []
+      commentList: [],
+      loading: false,
+      finished: false,
+      pageIndex: 1,
+      pageSize: 6,
+      refreshing: false
     }
   },
   methods: {
+    onLoad() {
+      setTimeout(() => {
+        this.getCommentList()
+      }, 500)
+    },
+    onRefresh() {
+      this.pageIndex = 1
+      this.loading = true
+      this.commentList = []
+      this.getCommentList()
+      console.log('xiala')
+    },
     async getCommentList() {
-      const res = await this.$axios.get('/user_comments')
-      console.log(res)
-      this.commentList = res.data.data
+      const res = await this.$axios.get('/user_comments', {
+        params: { pageIndex: this.pageIndex, pageSize: this.pageSize }
+      })
+      this.pageIndex += 1
+      this.commentList.push(...res.data.data)
+      console.log(this.commentList)
+
+      this.loading = false
+
+      if (res.data.data.length < 6) {
+        this.finished = true
+      }
+      this.refreshing = false
     }
   },
   created() {
