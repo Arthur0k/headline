@@ -15,11 +15,11 @@
         <span class="iconfont iconjiantou1"></span>
       </div>
     </div>
-    <ak-nav-item path="/guanzhu">
+    <ak-nav-item path="/myfollow">
       <template>我的关注</template>
       <template #content>关注的用户</template>
     </ak-nav-item>
-    <ak-nav-item>
+    <ak-nav-item path="/mycomment">
       <template>我的跟帖</template>
       <template #content>跟帖/回复</template>
     </ak-nav-item>
@@ -27,7 +27,7 @@
       <template>我的收藏</template>
       <template #content>文章/视频</template>
     </ak-nav-item>
-    <ak-nav-item path="/profile" @click.native="$router.push('/user-edit')">
+    <ak-nav-item path="/user-edit">
       <template>设置</template>
     </ak-nav-item>
     <van-button type="info" block class="btn" @click.native="quit">退出登录</van-button>

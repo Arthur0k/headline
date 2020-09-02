@@ -11,7 +11,8 @@ module.exports = {
         '@': path.resolve(__dirname, 'src'),
         views: path.join('@/views'),
         components: path.join('@/components'),
-        utils: path.join('@/common/utils')
+        utils: path.join('@/common/utils'),
+        assets: path.join('@/assets')
       }
     }
   }

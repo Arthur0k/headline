@@ -21,8 +21,7 @@ export default {
 <style lang="less">
 #AkHeader {
   display: flex;
-  height: 50px;
-  line-height: 50px;
+  align-items: center;
   text-align: center;
   border-bottom: 1px solid #eee;
   .back,
