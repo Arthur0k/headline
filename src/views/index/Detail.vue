@@ -172,9 +172,7 @@ export default {
     this.$bus.$on('reply', async (id, nickname) => {
       this.nickname = '@' + nickname
       this.parent_id = id
-      this.isShowTextarea = true
-      await this.$nextTick()
-      this.$refs.txt.focus()
+      this.onFocus()
     })
     this.$bus.$once('hook:beforeDestroy', () => {
       this.$off('reply')

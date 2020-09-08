@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { getCount } from 'utils/utils'
+import { getCount } from 'utils/tools'
 
 export default {
   name: 'floor',
@@ -32,7 +32,6 @@ export default {
   },
   methods: {
     onReply() {
-      console.log('floor', this.comment.id, this.comment.user.nickname)
       this.$bus.$emit('reply', this.comment.id, this.comment.user.nickname)
     }
   }

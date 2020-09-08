@@ -15,6 +15,7 @@ const MyCollect = () => import('views/user/MyCollect')
 const Index = () => import('views/index/Index')
 const Detail = () => import('views/index/Detail')
 const Manage = () => import('views/index/Manage')
+const Search = () => import('views/index/Search')
 
 const routes = [
   { path: '/', name: 'index', alias: '/index', component: Index },
@@ -26,7 +27,8 @@ const routes = [
   { path: '/myfollow', name: 'myfollow', component: MyFollow },
   { path: '/mycollect', name: 'mycollect', component: MyCollect },
   { path: '/post-detail/:id', name: 'detail', component: Detail },
-  { path: '/manage', name: 'manage', component: Manage }
+  { path: '/manage', name: 'manage', component: Manage },
+  { path: '/search', name: 'search', component: Search }
 ]
 
 const router = new VueRouter({
