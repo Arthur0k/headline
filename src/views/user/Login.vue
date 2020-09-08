@@ -64,6 +64,9 @@ export default {
         // 存取token id
         localStorage.setItem('token', data.token)
         localStorage.setItem('id', data.user.id)
+        if (this.$route.query.back) {
+          this.$router.back()
+        }
         this.$router.push('/user')
       } else {
         this.$toast.fail('登录失败')

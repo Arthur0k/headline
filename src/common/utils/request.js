@@ -2,7 +2,16 @@ import Vue from 'vue'
 import axios from 'axios'
 import router from '@/router'
 
+const URL = 'http://localhost:3000'
 Vue.prototype.$axios = axios
+Vue.prototype.$url = function(url) {
+  if (url.startsWith('http')) {
+    // 网络图片
+    return url
+  } else {
+    return URL + url
+  }
+}
 axios.defaults.baseURL = 'http://localhost:3000'
 axios.interceptors.request.use(
   config => {
