@@ -5,17 +5,17 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const Login = () => import('views/user/Login')
-const Register = () => import('views/user/Register')
-const User = () => import('views/user/User')
-const UserEdit = () => import('views/user/UserEdit')
-const MyComment = () => import('views/user/MyComment')
-const MyFollow = () => import('views/user/MyFollow')
-const MyCollect = () => import('views/user/MyCollect')
-const Index = () => import('views/index/Index')
-const Detail = () => import('views/index/Detail')
-const Manage = () => import('views/index/Manage')
-const Search = () => import('views/index/Search')
+const Login = () => import(/* webpackChunkName: "user" */ 'views/user/Login')
+const Register = () => import(/* webpackChunkName: "user" */ 'views/user/Register')
+const User = () => import(/* webpackChunkName: "user" */ 'views/user/User')
+const UserEdit = () => import(/* webpackChunkName: "user" */ 'views/user/UserEdit')
+const MyComment = () => import(/* webpackChunkName: "user" */ 'views/user/MyComment')
+const MyFollow = () => import(/* webpackChunkName: "user" */ 'views/user/MyFollow')
+const MyCollect = () => import(/* webpackChunkName: "user" */ 'views/user/MyCollect')
+const Index = () => import(/* webpackChunkName: "index" */ 'views/index/Index')
+const Detail = () => import(/* webpackChunkName: "index1" */ 'views/index/Detail')
+const Manage = () => import(/* webpackChunkName: "index1" */ 'views/index/Manage')
+const Search = () => import(/* webpackChunkName: "index1" */ 'views/index/Search')
 
 const routes = [
   { path: '/', name: 'index', alias: '/index', component: Index },

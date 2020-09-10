@@ -55,7 +55,6 @@ export default {
       const { statusCode, data } = res.data
       if (statusCode === 200) {
         this.activeList = data
-        console.log(this.activeList)
       }
     },
     delTab(id) {

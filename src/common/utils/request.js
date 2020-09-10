@@ -2,7 +2,7 @@ import Vue from 'vue'
 import axios from 'axios'
 import router from '@/router'
 
-const URL = 'http://localhost:3000'
+const URL = '/api'
 Vue.prototype.$axios = axios
 Vue.prototype.$url = function(url) {
   if (url.startsWith('http')) {

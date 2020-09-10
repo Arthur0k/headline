@@ -70,7 +70,6 @@ export default {
   methods: {
     async onSubmit(value) {
       const res = await this.$axios.post('/register', this.user)
-      console.log(res.data)
       const { statusCode, message } = res.data
       if (statusCode === 200) {
         this.$toast.success(message)

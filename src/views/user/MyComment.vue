@@ -56,7 +56,6 @@ export default {
       })
       this.pageIndex += 1
       this.commentList.push(...res.data.data)
-      console.log(this.commentList)
 
       this.loading = false
 

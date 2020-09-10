@@ -61,7 +61,6 @@ export default {
     async getCollects() {
       const res = await this.$axios.get('/user_star')
       const { statusCode, data } = res.data
-      console.log(res)
       if (statusCode === 200) {
         this.collectList = data
         this.collectList.forEach(item => {

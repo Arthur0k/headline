@@ -110,7 +110,6 @@ export default {
       const { statusCode, data } = res.data
       if (statusCode === 200) {
         this.comments = data
-        console.log('comment', data)
       }
     },
     async star() {

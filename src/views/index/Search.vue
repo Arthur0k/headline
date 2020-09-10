@@ -113,7 +113,6 @@ export default {
       const { statusCode, data } = res.data
       if (statusCode === 200) {
         this.list = data
-        console.log(this.list)
       }
     }
   }
